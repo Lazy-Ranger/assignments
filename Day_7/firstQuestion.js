@@ -13,3 +13,9 @@ Question 1: OOPs
  Status can be text and image
  
  */
+
+ class User {
+     constructor(){
+         
+     }
+ }
