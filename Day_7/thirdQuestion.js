@@ -25,9 +25,6 @@ Question 3: Convert the JSON into class
 
 */ 
 
-
-
-
     
 class Person {
     constructor(firstName,lastName,age,number){

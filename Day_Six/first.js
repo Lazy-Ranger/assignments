@@ -34,8 +34,8 @@ class MP {
 
 // MP
 
-const mpOne = new MP('Rakesh','Noida',driverOne,1500000000000,"MP",spendingLimit.mpSpendingLimit);
-console.log(mpOne)
+const mpOne = new MP('Rakesh','Noida',driverOne,150000000000000,"MP",spendingLimit.mpSpendingLimit);
+console.log(mpOne instanceof MP)
 
 
 
@@ -45,8 +45,7 @@ class Minister extends MP {
     }
 }
 
-const ministerOne = new Minister('Nitish','Noida',driverOne,180000,"MP",spendingLimit.minister);
-console.log(ministerOne)
+const ministerOne = new Minister('Nitish','Noida',driverOne,1800000000000,"MP",spendingLimit.minister);
 
 
 class PM extends  Minister {
@@ -56,6 +55,7 @@ class PM extends  Minister {
     }
 
     getPermission(minister){
+
         if(minister.spendAmount > spendingLimit){
             return true
         }
@@ -76,19 +76,24 @@ class Commisner {
         this.designation = designation;
     }
 
-    getArrest(Mp){
-        if(Mp instanceof MP && MP.spendAmount > MP.spendingLimit){
-            return `${Mp.name} is arrested`
+    getArrest(leaders){
+
+        if(leaders.role === 'MP' && leaders.spendAmount > leaders.spendingLimit){
+            return true
         }
-        if(MP instanceof Minister && PM.getPermission(MP)){
-            return `${MP.name} is arrested`
+
+        if(leaders.role ==='Minister' && pm.getPermission(leaders)){
+            return true
+        }
+        if(MP.role == 'PM'){
+            return false
         }
         else{
-            return `${MP.name} is arrested`;
+            return false
         }
     }
 }
 
 const commisner  = new Commisner('Rathor',"Commisner");
-
-const resutl = commisner.getArrest(mpOne)
+const result = commisner.getArrest(mpOne);
+const result2 = commisner.getArrest(ministerOne);

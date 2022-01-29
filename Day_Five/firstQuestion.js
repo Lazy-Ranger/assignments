@@ -1,72 +1,80 @@
-/*Question = 1. Write a method void printArray(int[][]arr)
- Prints array elements clock wise and anti-clockwise alternatively.
-Input : 
- 1 2 3
- 4 5 6
- 7 8 9
-Output :
-1 2 3 6 9 8 7 4 5
-3 2 1 4 7 8 9 6 5 */
+(()=>{
+  const matrix = [
+      [1,2,3,4],
+      [5,6,7,8],
+      [9,10,11,12],
+      [13,14,15,16]
+  ]
 
-(() => {
-  let mat = [
-    [1, 2, 3], //02
-    [4, 5, 6], //12
-    [7, 8, 9], //22
-  ];
+  let row = matrix[0].length;
+  let col = matrix.length;
+  
+  let rStart = 0;
+  let rEnd = row - 1;
+  let cStart = 0;
+  let cEnd = col - 1;
 
-  console.log("Clockwise: ");
-  clockWise(mat);
-  console.log("Anti Clockwise: ");
-  antiClockwise(mat);
-})();
-
-function clockWise(mat) {
-  counter = 0;
-  while (counter !== mat[0].length - 1) {
-    for (let j = counter; j <= mat[0].length - 1 - counter; j++) {
-      console.log(mat[counter][j]);
-    }
-
-    for (let i = 1; i <= mat[0].length - 1 - counter; i++) {
-      if (i !== counter) {
-        console.log(mat[i][mat[0].length - 1 - counter]);
+  const arr =[];
+  const arr2 = [];
+  while (rStart <= rEnd && cStart <= cEnd)
+  {
+      for (let col = cStart; col <= cEnd; col++)
+      {
+          arr.push(matrix[rStart][col])
       }
-    }
+      rStart++;
 
-    for (let k = mat[0].length - 1 - counter; k >= counter; k--) {
-      if (k !== counter) {
-        console.log(mat[mat[0].length - 1 - counter][k - 1] || "");
+      for (let row = rStart; row <= rEnd; row++)
+      {
+          arr.push(matrix[row][cEnd])
       }
-    }
+      cEnd--;
 
-    for (let l = counter + 1; l < mat[0].length - 1; l++) {
-      console.log((mat[mat[0].length - 1 - counter - l] || [])[0] || "");
-    }
-    counter++;
+      for (let col = cEnd; col >= cStart; col--)
+      {
+          arr.push(matrix[rEnd][col])
+      }
+      rEnd--;
+
+      for (let row = rEnd; row >= rStart; row--)
+      {
+          arr.push(matrix[row][cStart])
+      }
+      cStart++;
   }
-}
 
-function antiClockwise(mat) {
-  counter = 0;
-  while (counter !== mat[0].length - 1) {
-    for (let j = counter; j < mat[0].length; j++) {
-      console.log(mat[counter][mat[0].length - 1 - j + counter] || "");
-    }
-    for (let i = counter + 1; i <= mat[0].length - 1 - counter; i++) {
-      if (i !== counter) {
-        console.log(mat[i][counter]);
-      }
-    }
-    for (let k = counter + 1; k <= mat[0].length - 1 - counter; k++) {
-      if (k !== counter) {
-        console.log(mat[mat[0].length - 1][k] || "");
-      }
-    }
-    for (let l = counter + 1; l < mat[0].length - 1; l++) {
-      console.log((mat[l] || [])[mat[0].length - 1 - counter] || "");
-    }
+  
+  rStart = 0;
+  rEnd = row - 1;
+  cStart = 0;
+  cEnd = col - 1;
 
-    counter++;
+  while (rStart <= rEnd && cStart <= cEnd)
+  {
+      for (let col = cEnd; col >= cStart; col--)
+      {
+          arr2.push(matrix[rStart][col])
+      }
+      rStart++;
+
+      for (let row = rStart; row <= rEnd; row++)
+      {
+          arr2.push(matrix[row][cStart]);
+      }
+      cStart++;
+
+      for (let col = cStart; col <= cEnd; col++)
+      {
+          arr2.push(matrix[rEnd][col])
+      }
+      rEnd--;
+
+      for (let row = rEnd; row >= rStart; row--)
+      {
+          arr2.push(matrix[row][cEnd])
+      }
+      cEnd--;
   }
-}
+  console.log(arr2)
+
+})()

@@ -1,9 +1,7 @@
 function rotate(matrix) {
     const n = matrix.length;
     const x = Math.floor(n/ 2);
-    console.log(x)
     const y = n - 1;
-    console.log(y)
     for (let i = 0; i < x; i++) {
        for (let j = i; j < y - i; j++) {
           k = matrix[i][j];
