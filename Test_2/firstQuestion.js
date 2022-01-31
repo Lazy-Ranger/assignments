@@ -99,51 +99,6 @@ class Storage {
       this.calculateAmount();
     }
   
-    calculateTotalAmount(fullPrice = true) {
-      return this.findAll().map((item) => {
-        const { customerBoughtQuantity, vegetableItem } = item;
-        const discount = new Discount(
-          vegetableItem.vegetableBasePrice,
-          !fullPrice
-            ? 0
-            : this.customerType === "Main"
-            ? vegetableItem.discountPercentage
-            : 0
-        );
-  
-        return new BilledAmountItem(
-          vegetableItem.vegetableName,
-          vegetableItem.vegetableBasePrice,
-          vegetableItem.discountPercentage,
-          discount.getDiscountedAmount() * customerBoughtQuantity,
-          customerBoughtQuantity
-        );
-      });
-    }
-  
-    calculateAmount() {
-      const totalCalculatedAmount = this.calculateTotalAmount(false);
-  
-      const discountedAmount = this.calculateTotalAmount(true);
-  
-      this.calculateWithDiscount = discountedAmount;
-      this.calculateWithoutDiscount = totalCalculatedAmount;
-    }
-  
-    getTotalAmountWithoutDiscount() {
-      return this.sumTotalAmount(this.calculateWithoutDiscount);
-    }
-  
-    getTotalAmountWithDiscount() {
-      return this.sumTotalAmount(this.calculateWithDiscount);
-    }
-  
-    sumTotalAmount(cartItems) {
-      return cartItems.reduce(
-        (previous, current) => previous.totalPrice + current.totalPrice
-      );
-    }
-  
     getAmountReceipt() {
       return new Receipt(
         this.employee,
@@ -174,18 +129,7 @@ class Storage {
       this.employeeId = employeeId;
       this.gender = gender;
     }
-  }
-  
-  /**
-   * Vegetable Billing as per customer Bought items
-   */
-  
-  class CustomerBoughtItemVegetableItems {
-  
-    constructor(customerBoughtQuantity, vegetableItem) {
-      this.customerBoughtQuantity = customerBoughtQuantity;
-      this.vegetableItem = vegetableItem;
-    }
+
   }
   
   /**
@@ -221,15 +165,7 @@ class Storage {
    *
    * for Customer 1
    */
-  
-  const customerBoughtItem1 = new CustomerBoughtItemVegetableItems(2, vegetable1);
 
-  console.log(customerBoughtItem1)
-
-//   bill2.addItem(customer2BoughtItem2);
-  
-//   console.log(bill1.getTotalAmountWithoutDiscount());
-  // console.log(bill1.getTotalAmountWithDiscount());
 //   vegetableBillRecord.save(bill2);
 //   console.log(bill2.getAmountReceipt());
   

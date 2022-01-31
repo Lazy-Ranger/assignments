@@ -1,40 +1,20 @@
-class ATM {
 
-    twoThousand = 2000;
-    fiveHundred = 500;
-    twoHundred = 200;
-    hundred = 100;
-
-    constructor(totalAmout,twoThousand,fiveHundred,twoHundred,hundred){
-        this.totalAmout = totalAmout||0;
-        this.twoThousand= twoThousand||0;
-        this.fiveHundred = fiveHundred||0;
-        this.hundred = hundred||0;
-        this.twoHundred = twoHundred||0
+class Atm {
+    constructor(twoThousand,fiveHundredNote,towHundred,oneHundred){
+        this.twoThousandNote = twoThousand,
+        this.fiveHundredNote= fiveHundredNote,
+        this.towHundred = towHundred,
+        this.oneHundred = oneHundred
     }
-
-    checkAvabilityCash(amount){
-       
-        if(this.twoThousand && amount/2000 >= 1){
-        
-            
-        }
-    
-    }
-
-    withrowMoney(amount){
-        if(amount>this.totalAmout){
-            return `insufficient balance`;
-        }
-    this.checkAvabilityCash(amount)       
-
-    }
-
 }
 
+const OneAtm = new Atm(20,50,3,1);
 
+console.log(OneAtm)
 
-const newAtm = new ATM(41000,20,5);
+let m = 5;
 
-const result = newAtm.withrowMoney(1000);
-console.log(result)
+while (m>0){
+    console.log(m);
+    m--;
+}
