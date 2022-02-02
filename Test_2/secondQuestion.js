@@ -23,7 +23,6 @@ class Box {
         }
         else{
             cost = this.area*this.flute.totalGSM*this.pasting
-            console.log(cost);
         }
         return cost
     }

@@ -13,8 +13,9 @@ class Storage {
   /*
   Receipt generator
   */
-  class Receipt {
 
+  class Receipt {
+    
     constructor(employee, customerName, cartItem, totalAmount, payableAmount) {
       this.employee = employee;
       this.customerName = customerName;
@@ -169,4 +170,4 @@ class Storage {
 //   vegetableBillRecord.save(bill2);
 //   console.log(bill2.getAmountReceipt());
   
-  console.log(vegetableBillRecord.findAll());
+  // console.log(vegetableBillRecord.findAll());
